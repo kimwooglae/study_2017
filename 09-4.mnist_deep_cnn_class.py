@@ -247,3 +247,48 @@ Learning Finished!
 Learning Finished!
 ('Final Accuracy:', 0.99339998)
 '''
+
+'''
+C:\Users\user\AppData\Local\Programs\Python\Python35\python.exe C:/Users/user/PycharmProjects/study_2017/09-4.mnist_deep_cnn_class.py
+Extracting MNIST_data/train-images-idx3-ubyte.gz
+Extracting MNIST_data/train-labels-idx1-ubyte.gz
+Extracting MNIST_data/t10k-images-idx3-ubyte.gz
+Extracting MNIST_data/t10k-labels-idx1-ubyte.gz
+2017-10-30 13:23:02.527879: W C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-30 13:23:02.528155: W C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\platform\cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-30 13:23:02.819392: I C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\common_runtime\gpu\gpu_device.cc:955] Found device 0 with properties: 
+name: GeForce GTX 1050 Ti
+major: 6 minor: 1 memoryClockRate (GHz) 1.392
+pciBusID 0000:01:00.0
+Total memory: 4.00GiB
+Free memory: 3.31GiB
+2017-10-30 13:23:02.819633: I C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\common_runtime\gpu\gpu_device.cc:976] DMA: 0 
+2017-10-30 13:23:02.819748: I C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\common_runtime\gpu\gpu_device.cc:986] 0:   Y 
+2017-10-30 13:23:02.820086: I C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\common_runtime\gpu\gpu_device.cc:1045] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GeForce GTX 1050 Ti, pci bus id: 0000:01:00.0)
+Learning Started!
+2017-10-30 13:24:27.198147: W C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\common_runtime\bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.59GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-10-30 13:24:27.198423: W C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\common_runtime\bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 1.34GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-10-30 13:24:27.466028: W C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\common_runtime\bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.10GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-10-30 13:24:27.514373: W C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\common_runtime\bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 3.90GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+2017-10-30 13:24:27.798108: W C:\tf_jenkins\home\workspace\rel-win\M\windows-gpu\PY\35\tensorflow\core\common_runtime\bfc_allocator.cc:217] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.75GiB. The caller indicates that this is not a failure, but may mean that there could be performance gains if more memory is available.
+Epoch: 0001 cost = 0.289006050 Accuracy: 0.9843
+Epoch: 0002 cost = 0.083091439 Accuracy: 0.9894
+Epoch: 0003 cost = 0.061275722 Accuracy: 0.989
+Epoch: 0004 cost = 0.052544759 Accuracy: 0.9906
+Epoch: 0005 cost = 0.046062796 Accuracy: 0.9917
+Epoch: 0006 cost = 0.039569762 Accuracy: 0.9917
+Epoch: 0007 cost = 0.036703118 Accuracy: 0.9911
+Epoch: 0008 cost = 0.036134717 Accuracy: 0.9933
+Epoch: 0009 cost = 0.032488339 Accuracy: 0.9914
+Epoch: 0010 cost = 0.030079693 Accuracy: 0.9935
+Epoch: 0011 cost = 0.028116586 Accuracy: 0.9935
+Epoch: 0012 cost = 0.027264952 Accuracy: 0.9936
+Epoch: 0013 cost = 0.025739732 Accuracy: 0.9933
+Epoch: 0014 cost = 0.025085885 Accuracy: 0.9934
+Epoch: 0015 cost = 0.024836152 Accuracy: 0.9944
+Learning Finished!
+Final Accuracy: 0.9944
+
+Process finished with exit code 0
+
+'''
