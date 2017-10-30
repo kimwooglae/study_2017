@@ -43,9 +43,9 @@ class Model:
                 # Pooling Layer #1
                 pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2],padding="SAME", strides=2)
                 dropout1 = tf.layers.dropout(inputs=pool1,rate=0.7, training=self.training)
-                self.conv1_hist = tf.summary.histogram("conv1", conv1)
-                self.pool1_hist = tf.summary.histogram("pool1", pool1)
-                self.dropout1_hist = tf.summary.histogram("dropout1", dropout1)
+                self.conv1_hist = tf.summary.histogram(self.name + "conv1", conv1)
+                self.pool1_hist = tf.summary.histogram(self.name + "pool1", pool1)
+                self.dropout1_hist = tf.summary.histogram(self.name + "dropout1", dropout1)
 
 
             # Convolutional Layer #2 and Pooling Layer #2
@@ -53,18 +53,18 @@ class Model:
                 conv2 = tf.layers.conv2d(inputs=dropout1, filters=64, kernel_size=[3, 3],padding="SAME", activation=tf.nn.relu)
                 pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2],padding="SAME", strides=2)
                 dropout2 = tf.layers.dropout(inputs=pool2,rate=0.7, training=self.training)
-                self.conv2_hist = tf.summary.histogram("conv2", conv2)
-                self.pool2_hist = tf.summary.histogram("pool2", pool2)
-                self.dropout2_hist = tf.summary.histogram("dropout2", dropout2)
+                self.conv2_hist = tf.summary.histogram(self.name + "conv2", conv2)
+                self.pool2_hist = tf.summary.histogram(self.name + "pool2", pool2)
+                self.dropout2_hist = tf.summary.histogram(self.name + "dropout2", dropout2)
 
             # Convolutional Layer #3 and Pooling Layer #3
             with tf.name_scope('conv_03') as scope:
                 conv3 = tf.layers.conv2d(inputs=dropout2, filters=128, kernel_size=[3, 3],padding="SAME", activation=tf.nn.relu)
                 pool3 = tf.layers.max_pooling2d(inputs=conv3, pool_size=[2, 2],padding="SAME", strides=2)
                 dropout3 = tf.layers.dropout(inputs=pool3,rate=0.7, training=self.training)
-                self.conv3_hist = tf.summary.histogram("conv3", conv3)
-                self.pool3_hist = tf.summary.histogram("pool3", pool3)
-                self.dropout3_hist = tf.summary.histogram("dropout3", dropout3)
+                self.conv3_hist = tf.summary.histogram(self.name + "conv3", conv3)
+                self.pool3_hist = tf.summary.histogram(self.name + "pool3", pool3)
+                self.dropout3_hist = tf.summary.histogram(self.name + "dropout3", dropout3)
 
             # Dense Layer with Relu
             flat = tf.reshape(dropout3, [-1, 128 * 4 * 4])
@@ -72,18 +72,18 @@ class Model:
             with tf.name_scope('layer_01') as scope:
                 dense4 = tf.layers.dense(inputs=flat,units=625, activation=tf.nn.relu)
                 dropout4 = tf.layers.dropout(inputs=dense4,rate=0.5, training=self.training)
-                self.dense4_hist = tf.summary.histogram("dense4", dense4)
-                self.dropout4_hist = tf.summary.histogram("dropout4", dropout4)
+                self.dense4_hist = tf.summary.histogram(self.name + "dense4", dense4)
+                self.dropout4_hist = tf.summary.histogram(self.name + "dropout4", dropout4)
 
             # Logits (no activation) Layer: L5 Final FC 625 inputs -> 10 outputs
             with tf.name_scope('layer_02') as scope:
                 self.logits = tf.layers.dense(inputs=dropout4, units=10)
-                self.logits_hist = tf.summary.histogram("logits", self.logits)
+                self.logits_hist = tf.summary.histogram(self.name + "logits", self.logits)
 
         # define cost/loss & optimizer
         with tf.name_scope('cost') as scope:
             self.cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=self.logits, labels=self.Y))
-            self.cost_sum = tf.summary.scalar("cost", self.cost)
+            self.cost_sum = tf.summary.scalar(self.name + "cost", self.cost)
 
         with tf.name_scope('optimizer') as scope:
             self.optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(self.cost)
@@ -92,7 +92,7 @@ class Model:
 
         with tf.name_scope('accuracy') as scope:
             self.accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-            self.accuracy_sum = tf.summary.scalar("cost", self.accuracy)
+            self.accuracy_sum = tf.summary.scalar(self.name + "cost", self.accuracy)
 
     def predict(self, x_test, training=False):
         return self.sess.run(self.logits,
@@ -108,7 +108,7 @@ class Model:
 sess = tf.Session()
 
 models = []
-num_models = 10
+num_models = 1
 for m in range(num_models):
     models.append(Model(sess, "model" + str(m)))
 
