@@ -13,7 +13,7 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
 # hyper parameters
 learning_rate = 0.001
-training_epochs = 1
+training_epochs = 15
 batch_size = 100
 
 # dropout (keep_prob) rate  0.7~0.5 on training, but should be 1 for testing
@@ -25,32 +25,32 @@ X_img = tf.reshape(X, [-1, 28, 28, 1])   # img 28x28x1 (black/white)
 Y = tf.placeholder(tf.float32, [None, 10])
 
 W1 = tf.Variable(tf.random_normal([3,3,1,32], stddev=0.01))
-L1 = tf.nn.conv2d(X_img, W1, strides=[1,1,1,1], padding='SAME')
+L1 = tf.nn.conv2d(X_img, W1, strides=[1,1,1,1], padding='SAME')     # 28  28  32
 L1 = tf.nn.relu(L1)
-L1 = tf.nn.max_pool(L1, ksize=[1,2,2,1], strides=[1,2,2,1], padding='SAME')
+L1 = tf.nn.max_pool(L1, ksize=[1,2,2,1], strides=[1,2,2,1], padding='SAME')   # 14 14 32
 L1 = tf.nn.dropout(L1, keep_prob=keep_prob)
 
 
 W2 = tf.Variable(tf.random_normal([3,3,32,64], stddev=0.01))
-L2 = tf.nn.conv2d(L1, W2, strides=[1,1,1,1], padding='SAME')
+L2 = tf.nn.conv2d(L1, W2, strides=[1,1,1,1], padding='SAME')   # 14  14  64
 L2 = tf.nn.relu(L2)
-L2 = tf.nn.max_pool(L2, ksize=[1,2,2,1], strides=[1,2,2,1], padding='SAME')
+L2 = tf.nn.max_pool(L2, ksize=[1,2,2,1], strides=[1,2,2,1], padding='SAME')   # 7  7 64
 L2 = tf.nn.dropout(L2, keep_prob=keep_prob)
 
 W3 = tf.Variable(tf.random_normal([3,3,64,128], stddev=0.01))
-L3 = tf.nn.conv2d(L2, W3, strides=[1,1,1,1], padding='SAME')
+L3 = tf.nn.conv2d(L2, W3, strides=[1,1,1,1], padding='SAME')    # 7  7   128
 L3 = tf.nn.relu(L3)
-L3 = tf.nn.max_pool(L3, ksize=[1,2,2,1], strides=[1,2,2,1], padding='SAME')
+L3 = tf.nn.max_pool(L3, ksize=[1,2,2,1], strides=[1,2,2,1], padding='SAME')   # 4  4 128
 L3 = tf.nn.dropout(L3, keep_prob=keep_prob)
 
 L3 = tf.reshape(L3, [-1, 4*4*128])
 
-W4 = tf.get_variable("W4", shape=[4*4*128, 625], initializer=tf.contrib.layers.xavier_initializer())
-b4 = tf.Variable(tf.random_normal([625]))
+W4 = tf.get_variable("W4", shape=[4*4*128, 1024], initializer=tf.contrib.layers.xavier_initializer())
+b4 = tf.Variable(tf.random_normal([1024]))
 L4 = tf.nn.relu(tf.matmul(L3, W4) + b4)
 L4 = tf.nn.dropout(L4, keep_prob=keep_prob)
 
-W5 = tf.get_variable("W5", shape=[625,10], initializer=tf.contrib.layers.xavier_initializer())
+W5 = tf.get_variable("W5", shape=[1024,10], initializer=tf.contrib.layers.xavier_initializer())
 b5 = tf.Variable(tf.random_normal([10]))
 hypothesis = tf.matmul(L4, W5) + b5
 

@@ -108,7 +108,7 @@ class Model:
 sess = tf.Session()
 
 models = []
-num_models = 1
+num_models = 10
 for m in range(num_models):
     models.append(Model(sess, "model" + str(m)))
 
