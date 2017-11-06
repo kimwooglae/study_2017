@@ -5,11 +5,14 @@ import time
 
 from tensorflow.examples.tutorials.mnist import input_data
 
+def printLog(*message):
+    now = time.localtime()
+    print("%04d-%02d-%02d %02d:%02d:%02d " % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec),message.join(""))
+#    print("%04d-%02d-%02d %02d:%02d:%02d " % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec),message)
+
 tf.set_random_seed(777)  # reproducibility
 
-now = time.localtime()
-
-print("%04d-%02d-%02d %02d:%02d:%02d Start" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec))
+printLog("Start")
 
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 # Check out https://www.tensorflow.org/get_started/mnist/beginners for
@@ -129,7 +132,7 @@ writer.add_graph(sess.graph)  # Show the graph
 
 sess.run(tf.global_variables_initializer())
 
-print('Learning Started!')
+printLog('Learning Started!')
 
 # train my model
 for epoch in range(training_epochs):
@@ -142,15 +145,15 @@ for epoch in range(training_epochs):
         avg_cost += c / total_batch
         writer.add_summary(summary, global_step=epoch * total_batch + i)
 
-    print('Epoch:', '%04d' % (epoch + 1), 'cost =', '{:.9f}'.format(avg_cost), 'Accuracy:', m1.get_accuracy(mnist.test.images, mnist.test.labels))
+    printLog('Epoch:', '%04d' % (epoch + 1), 'cost =', '{:.9f}'.format(avg_cost), 'Accuracy:', m1.get_accuracy(mnist.test.images, mnist.test.labels))
 
-print('Learning Finished!')
+#    printLog(('Epoch: %04d' % (epoch + 1)) + (' cost =' '{:.9f}'.format(avg_cost)))
+#    print('Accuracy:',  m1.get_accuracy(mnist.test.images, mnist.test.labels))
+
+printLog('Learning Finished!')
 
 # Test model and check accuracy
-print('Final Accuracy:', m1.get_accuracy(mnist.test.images, mnist.test.labels))
-
-now = time.localtime()
-print("%04d-%02d-%02d %02d:%02d:%02d Start" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec))
+printLog('Final Accuracy:'+ m1.get_accuracy(mnist.test.images, mnist.test.labels))
 
 '''
 Learning Started!
