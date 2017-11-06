@@ -1,10 +1,15 @@
 # Lab 11 MNIST and Deep learning CNN
 import tensorflow as tf
 # import matplotlib.pyplot as plt
+import time
 
 from tensorflow.examples.tutorials.mnist import input_data
 
 tf.set_random_seed(777)  # reproducibility
+
+now = time.localtime()
+
+print("%04d-%02d-%02d %02d:%02d:%02d Start" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec))
 
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 # Check out https://www.tensorflow.org/get_started/mnist/beginners for
@@ -143,6 +148,9 @@ print('Learning Finished!')
 
 # Test model and check accuracy
 print('Final Accuracy:', m1.get_accuracy(mnist.test.images, mnist.test.labels))
+
+now = time.localtime()
+print("%04d-%02d-%02d %02d:%02d:%02d Start" % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec))
 
 '''
 Learning Started!
