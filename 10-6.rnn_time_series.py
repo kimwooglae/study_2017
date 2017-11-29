@@ -30,7 +30,7 @@ def MinMaxScaler(data):
     return numerator / (denominator + 1e-7)
 
 
-seq_length = 5
+seq_length = 21
 data_dim = 5
 hidden_dim = 10
 output_dim = 1

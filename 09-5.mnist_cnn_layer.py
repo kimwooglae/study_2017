@@ -7,8 +7,7 @@ from tensorflow.examples.tutorials.mnist import input_data
 
 def printLog(*message):
     now = time.localtime()
-    print("%04d-%02d-%02d %02d:%02d:%02d " % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec),message.join(""))
-#    print("%04d-%02d-%02d %02d:%02d:%02d " % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec),message)
+    print("%04d-%02d-%02d %02d:%02d:%02d " % (now.tm_year, now.tm_mon, now.tm_mday, now.tm_hour, now.tm_min, now.tm_sec),message)
 
 tf.set_random_seed(777)  # reproducibility
 
@@ -153,7 +152,7 @@ for epoch in range(training_epochs):
 printLog('Learning Finished!')
 
 # Test model and check accuracy
-printLog('Final Accuracy:'+ m1.get_accuracy(mnist.test.images, mnist.test.labels))
+printLog('Final Accuracy:', m1.get_accuracy(mnist.test.images, mnist.test.labels))
 
 '''
 Learning Started!
